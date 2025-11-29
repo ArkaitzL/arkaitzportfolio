@@ -200,7 +200,6 @@ const Hero: React.FC<{ onNavigate: (path: string) => void }> = ({ onNavigate }) 
           <div className="md:col-span-2">
             <p className="text-2xl text-secondary leading-relaxed font-light">
               Creando experiencias digitales enfocadas en movimiento, estética y rendimiento.
-              Basado en {PORTFOLIO_DATA.personal.location}.
             </p>
           </div>
           <div className="flex flex-col justify-end items-start gap-4">
@@ -459,7 +458,7 @@ const FreelanceCTA: React.FC = () => {
             </h2>
 
             <p className="text-lg md:text-xl font-light opacity-90 max-w-2xl mx-auto">
-              Dirijo <strong>TuNuevoSoftware</strong> (TNS), un estudio dedicado a crear landing pages y aplicaciones web rápidas y optimizadas para SEO.
+              Trabajo en <strong>TuNuevoSoftware</strong> (TNS), un estudio dedicado a crear aplicaciones web rápidas y optimizadas para SEO.
             </p>
 
             <div className="pt-8">
@@ -478,6 +477,10 @@ const FreelanceCTA: React.FC = () => {
 };
 
 const Dock: React.FC<{ theme: string; toggleTheme: () => void; activeSection: string; onNavigate: (path: string) => void }> = ({ theme, toggleTheme, activeSection, onNavigate }) => {
+  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 });
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const itemsRef = React.useRef<(HTMLButtonElement | null)[]>([]);
+
   const scrollTo = (id: string) => {
     // If not on homepage, go home first
     if (window.location.pathname !== '/') {
@@ -510,27 +513,66 @@ const Dock: React.FC<{ theme: string; toggleTheme: () => void; activeSection: st
     { id: 'experience', label: 'Experiencia' }
   ];
 
-  return (
-    <div className="fixed bottom-8 left-1/2 -translate-x-1/2 ml-12 z-50 animate-fade-in max-w-[95vw]">
-      <div className="flex items-center gap-1 sm:gap-2 p-2 bg-surface border border-primary/10 rounded-full shadow-2xl shadow-black/20 dark:shadow-black/60 ring-1 ring-black/5 dark:ring-white/10 backdrop-blur-sm">
-        {menuItems.map((item) => (
-          <button
-            key={item.id}
-            onClick={() => scrollTo(item.id)}
-            className={`px-4 sm:px-6 py-3 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 active:scale-95 ${activeSection === item.id && window.location.pathname === '/'
-              ? 'bg-primary text-background shadow-md scale-105 font-bold ring-2 ring-primary/20'
-              : 'text-secondary hover:text-primary hover:bg-subtle hover:-translate-y-0.5'
-              }`}
-          >
-            {item.label}
-          </button>
-        ))}
+  // Map 'manifesto' (Áreas de Desarrollo) to 'home' for the active state
+  const activeId = (activeSection === 'manifesto' || activeSection === 'home') ? 'home' : activeSection;
 
-        <div className="w-[1px] h-6 bg-border mx-1 sm:mx-2" />
+  useEffect(() => {
+    const activeIndex = menuItems.findIndex(item => item.id === activeId);
+    const el = itemsRef.current[activeIndex];
+    const container = containerRef.current;
+
+    if (el && container && window.location.pathname === '/') {
+      const containerRect = container.getBoundingClientRect();
+      const elRect = el.getBoundingClientRect();
+
+      setIndicatorStyle({
+        left: elRect.left - containerRect.left,
+        width: elRect.width,
+        opacity: 1
+      });
+    } else {
+      setIndicatorStyle(prev => ({ ...prev, opacity: 0 }));
+    }
+  }, [activeId, window.location.pathname]);
+
+  return (
+    <div className="fixed bottom-8 left-1/2 -translate-x-1/2 ml-16 z-50 animate-fade-in max-w-[95vw]">
+      <div
+        ref={containerRef}
+        className="relative flex items-center gap-1 sm:gap-2 p-2 bg-surface/70 dark:bg-[#0a0a0a]/70 backdrop-blur-2xl border border-white/20 dark:border-white/10 rounded-full shadow-2xl shadow-black/20 ring-1 ring-white/20 dark:ring-white/5"
+      >
+        {/* Sliding Active Indicator */}
+        <div
+          className="absolute top-2 bottom-2 bg-primary rounded-full transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] shadow-md"
+          style={{
+            left: indicatorStyle.left,
+            width: indicatorStyle.width,
+            opacity: indicatorStyle.opacity
+          }}
+        />
+
+        {menuItems.map((item, index) => {
+          const isActive = activeId === item.id && window.location.pathname === '/';
+          return (
+            <button
+              key={item.id}
+              ref={el => itemsRef.current[index] = el}
+              onClick={() => scrollTo(item.id)}
+              className={`relative z-10 px-4 sm:px-6 py-3 rounded-full text-xs sm:text-sm font-medium transition-colors duration-300 ${isActive
+                ? 'text-background font-bold'
+                : 'text-secondary hover:text-primary'
+                }`}
+            >
+              {item.label}
+            </button>
+          );
+        })}
+
+        <div className="w-[1px] h-6 bg-border/50 mx-1 sm:mx-2 relative z-10" />
 
         <button
           onClick={toggleTheme}
-          className="p-3 rounded-full text-secondary hover:text-primary hover:bg-subtle transition-all duration-300 hover:-translate-y-0.5 active:scale-95 active:rotate-12"
+          className="relative z-10 p-3 rounded-full text-secondary hover:text-primary hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-300 hover:-translate-y-0.5 active:scale-95 active:rotate-12"
           title={theme === 'dark' ? 'Cambiar a Modo Claro' : 'Cambiar a Modo Oscuro'}
         >
           {theme === 'dark' ? <Icons.Sun className="w-4 h-4" /> : <Icons.Moon className="w-4 h-4" />}
@@ -538,7 +580,7 @@ const Dock: React.FC<{ theme: string; toggleTheme: () => void; activeSection: st
 
         <button
           onClick={() => onNavigate('/reservas')}
-          className="p-3 rounded-full bg-primary text-background hover:scale-110 active:scale-95 transition-all duration-300 ml-1 hover:shadow-[0_0_15px_-3px_var(--accent-color)]"
+          className="relative z-10 p-3 rounded-full bg-primary text-background hover:scale-110 active:scale-95 transition-all duration-300 ml-1 hover:shadow-[0_0_15px_-3px_var(--accent-color)]"
           title="Contáctame"
         >
           <Icons.Mail className="w-4 h-4" />
@@ -558,7 +600,8 @@ const Footer: React.FC = () => (
         {[
           { icon: Icons.Github, link: PORTFOLIO_DATA.links.github },
           { icon: Icons.Linkedin, link: PORTFOLIO_DATA.links.linkedin },
-          { icon: Icons.Gamepad, link: PORTFOLIO_DATA.links.itchio }
+          { icon: Icons.Gamepad, link: PORTFOLIO_DATA.links.itchio },
+          { icon: Icons.Link, link: 'https://info.arkaitz.me/' }
         ].map((social, i) => (
           <a
             key={i}
@@ -571,7 +614,7 @@ const Footer: React.FC = () => (
         ))}
       </div>
       <p className="mt-12 text-secondary text-sm">
-        © {new Date().getFullYear()} Arkaitz L. Todos los derechos reservados.
+        © {new Date().getFullYear()} Arkaitz L. Ningún derecho reservado.
       </p>
     </div>
   </footer>
