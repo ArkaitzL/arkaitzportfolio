@@ -558,9 +558,9 @@ const Dock: React.FC<{ theme: string; toggleTheme: () => void; activeSection: st
   };
 
   const menuItems = [
-    { id: 'home', label: 'Inicio' },
-    { id: 'work', label: 'Proyectos' },
-    { id: 'experience', label: 'Experiencia' }
+    { id: 'home', label: 'Inicio', icon: Icons.Home },
+    { id: 'work', label: 'Proyectos', icon: Icons.Monitor },
+    { id: 'experience', label: 'Experiencia', icon: Icons.Briefcase }
   ];
 
   // Map 'manifesto' (Áreas de Desarrollo) to 'home' for the active state
@@ -586,7 +586,7 @@ const Dock: React.FC<{ theme: string; toggleTheme: () => void; activeSection: st
   }, [activeId, window.location.pathname]);
 
   return (
-    <div className="fixed bottom-4 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 ml-0 sm:ml-8 md:ml-16 z-50 animate-fade-in max-w-[95vw]">
+    <div className="fixed bottom-4 sm:bottom-6 md:bottom-8 inset-x-0 mx-auto w-fit z-50 animate-fade-in max-w-[95vw]">
       <div
         ref={containerRef}
         className="relative flex items-center gap-0.5 sm:gap-1 md:gap-2 p-1.5 sm:p-2 bg-surface/70 dark:bg-[#0a0a0a]/70 backdrop-blur-2xl border border-white/20 dark:border-white/10 rounded-full shadow-2xl shadow-black/20 ring-1 ring-white/20 dark:ring-white/5"
@@ -603,17 +603,23 @@ const Dock: React.FC<{ theme: string; toggleTheme: () => void; activeSection: st
 
         {menuItems.map((item, index) => {
           const isActive = activeId === item.id && window.location.pathname === '/';
+          const Icon = item.icon;
           return (
             <button
               key={item.id}
               ref={el => itemsRef.current[index] = el}
               onClick={() => scrollTo(item.id)}
-              className={`relative z-10 px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full text-[10px] sm:text-xs md:text-sm font-medium transition-colors duration-300 ${isActive
+              className={`relative z-10 px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full transition-colors duration-300 flex items-center gap-2 ${isActive
                 ? 'text-background font-bold'
                 : 'text-secondary hover:text-primary'
                 }`}
             >
-              {item.label}
+              <span className="md:hidden">
+                <Icon className="w-5 h-5" />
+              </span>
+              <span className="hidden md:block text-sm font-medium">
+                {item.label}
+              </span>
             </button>
           );
         })}
@@ -814,17 +820,17 @@ const ProjectDetailPage: React.FC<{ projectId: number; onNavigate: (path: string
       </div>
 
       {/* Content Container */}
-      <div className={`container mx-auto px-6 relative z-20 -mt-32 transition-all duration-700 delay-200 ease-[cubic-bezier(0.25,1,0.5,1)] ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+      <div className={`container mx-auto px-3 md:px-6 relative z-20 -mt-20 md:-mt-32 transition-all duration-700 delay-200 ease-[cubic-bezier(0.25,1,0.5,1)] ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
         <RevealOnScroll>
-          <div className="bg-surface border border-border rounded-[2.5rem] p-8 md:p-16 shadow-2xl relative overflow-hidden">
+          <div className="bg-surface border border-border rounded-3xl md:rounded-[2.5rem] p-5 md:p-16 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl -z-10" />
 
-            <div className="flex flex-col md:flex-row gap-4 justify-between items-start mb-12">
+            <div className="flex flex-col md:flex-row gap-4 justify-between items-start mb-8 md:mb-12">
               <div>
-                <span className="inline-block px-4 py-1.5 rounded-full border border-accent/20 bg-accent/5 text-accent text-sm font-bold tracking-wider uppercase mb-4">
+                <span className="inline-block px-3 py-1 md:px-4 md:py-1.5 rounded-full border border-accent/20 bg-accent/5 text-accent text-xs md:text-sm font-bold tracking-wider uppercase mb-3 md:mb-4">
                   {project.category}
                 </span>
-                <h1 className="text-5xl md:text-8xl font-display font-bold text-primary leading-none mb-4">
+                <h1 className="text-3xl sm:text-4xl md:text-8xl font-display font-bold text-primary leading-none mb-4">
                   {project.title}
                 </h1>
               </div>
@@ -845,8 +851,8 @@ const ProjectDetailPage: React.FC<{ projectId: number; onNavigate: (path: string
 
             <div className="grid md:grid-cols-3 gap-16">
               <div className="md:col-span-2 space-y-8">
-                <h2 className="text-2xl font-bold mb-4 border-b border-border pb-4">Sobre el Proyecto</h2>
-                <p className="text-xl text-secondary leading-relaxed">
+                <h2 className="text-xl md:text-2xl font-bold mb-4 border-b border-border pb-4">Sobre el Proyecto</h2>
+                <p className="text-base md:text-xl text-secondary leading-relaxed">
                   {project.description}
                 </p>
 
