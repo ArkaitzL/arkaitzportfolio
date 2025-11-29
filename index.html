@@ -136,6 +136,16 @@
     .dark .text-outline {
       -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
     }
+
+    /* Line Clamp Utility */
+    .line-clamp-3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      line-clamp: 3;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   </style>
   <script type="importmap">
 {

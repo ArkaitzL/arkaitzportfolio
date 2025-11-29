@@ -100,11 +100,11 @@ const StickyProjectCard: React.FC<StickyProjectCardProps> = ({ project, index, o
 
             {/* Right Column: Content */}
             <div className="md:col-span-9 flex flex-col gap-8">
-              <div>
+              <div className="min-h-[280px] md:min-h-[240px] flex flex-col">
                 <h3 className="text-5xl md:text-7xl font-display font-bold text-primary leading-[0.9] tracking-tight mb-6 transition-colors duration-500">
                   {project.title}
                 </h3>
-                <p className="text-xl md:text-2xl text-secondary font-light leading-relaxed max-w-3xl transition-colors duration-500 group-hover:text-primary/80">
+                <p className="text-xl md:text-2xl text-secondary font-light leading-relaxed max-w-3xl transition-colors duration-500 group-hover:text-primary/80 line-clamp-3">
                   {project.description}
                 </p>
               </div>
@@ -714,9 +714,13 @@ const RedirectPage: React.FC = () => {
 
 const ProjectDetailPage: React.FC<{ projectId: number; onNavigate: (path: string) => void }> = ({ projectId, onNavigate }) => {
   const project = PORTFOLIO_DATA.projects.find(p => p.id === projectId);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    // Activar la animación de entrada después de un pequeño delay
+    const timer = setTimeout(() => setIsLoaded(true), 50);
+    return () => clearTimeout(timer);
   }, []);
 
   if (!project) {
@@ -729,25 +733,28 @@ const ProjectDetailPage: React.FC<{ projectId: number; onNavigate: (path: string
   }
 
   return (
-    <div className="min-h-screen bg-background text-primary pb-32 animate-fade-in">
+    <div className={`min-h-screen bg-background text-primary pb-32 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
       <div className="bg-grain" />
 
       {/* Navigation */}
-      <div className="fixed top-0 left-0 right-0 p-6 md:p-10 z-50 pointer-events-none">
+      <div className={`fixed top-0 left-0 right-0 p-6 md:p-10 z-50 pointer-events-none transition-all duration-500 delay-100 ${isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'}`}>
         <div className="flex justify-between items-center pointer-events-auto">
           <button
             type="button"
             onClick={() => onNavigate('/')}
-            className="group flex items-center gap-3 text-secondary hover:text-primary transition-colors bg-surface/50 backdrop-blur-md px-5 py-3 rounded-full border border-border/50 hover:border-primary/30 cursor-pointer"
+            className="group relative flex items-center gap-2.5 px-5 py-3 rounded-full transition-all duration-300 bg-black dark:bg-white text-white dark:text-black font-medium hover:gap-3.5 hover:px-6 active:scale-95 shadow-lg hover:shadow-xl overflow-hidden"
           >
-            <Icons.ArrowLeft className="w-5 h-5 transition-transform group-hover:-translate-x-1" />
-            <span className="font-medium">Volver</span>
+            {/* Subtle hover gradient effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 dark:via-black/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
+
+            <Icons.ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-0.5 relative z-10" />
+            <span className="text-sm tracking-wide relative z-10">Volver</span>
           </button>
         </div>
       </div>
 
       {/* Hero Image */}
-      <div className="relative w-full h-[60vh] md:h-[70vh] overflow-hidden">
+      <div className={`relative w-full h-[60vh] md:h-[70vh] overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${isLoaded ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background z-10" />
         <img
           src={project.image}
@@ -757,7 +764,7 @@ const ProjectDetailPage: React.FC<{ projectId: number; onNavigate: (path: string
       </div>
 
       {/* Content Container */}
-      <div className="container mx-auto px-6 relative z-20 -mt-32">
+      <div className={`container mx-auto px-6 relative z-20 -mt-32 transition-all duration-700 delay-200 ease-[cubic-bezier(0.25,1,0.5,1)] ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
         <RevealOnScroll>
           <div className="bg-surface border border-border rounded-[2.5rem] p-8 md:p-16 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl -z-10" />
@@ -846,9 +853,9 @@ const ProjectDetailPage: React.FC<{ projectId: number; onNavigate: (path: string
   );
 };
 
-const Portfolio: React.FC<{ theme: string; toggleTheme: () => void; activeSection: string; onNavigate: (path: string) => void }> = ({ theme, toggleTheme, activeSection, onNavigate }) => (
+const Portfolio: React.FC<{ theme: string; toggleTheme: () => void; activeSection: string; onNavigate: (path: string) => void; isTransitioning: boolean }> = ({ theme, toggleTheme, activeSection, onNavigate, isTransitioning }) => (
   <>
-    <main className="relative z-10 pb-32">
+    <main className={`relative z-10 pb-32 transition-all duration-300 ease-out ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
       <Hero onNavigate={onNavigate} />
       <SkillsMarquee />
       <Manifesto />
@@ -872,16 +879,45 @@ export default function App() {
 
   const [activeSection, setActiveSection] = useState('home');
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const scrollPositionRef = React.useRef<number>(0);
 
   // Router helper
   const navigate = (path: string) => {
     try {
-      window.history.pushState({}, '', path);
-      setCurrentPath(path);
-      // Defer scrolling to next tick to avoid conflicts with unmount/mount
-      setTimeout(() => window.scrollTo(0, 0), 0);
+      // Guardar la posición del scroll actual antes de navegar
+      if (currentPath === '/' && path.startsWith('/proyecto/')) {
+        scrollPositionRef.current = window.pageYOffset || document.documentElement.scrollTop;
+      }
+
+      // Iniciar transición de salida
+      setIsTransitioning(true);
+
+      // Esperar a que termine la animación de salida antes de cambiar la ruta
+      setTimeout(() => {
+        window.history.pushState({}, '', path);
+        setCurrentPath(path);
+
+        // Si volvemos a la página principal, restaurar el scroll
+        if (path === '/' && scrollPositionRef.current > 0) {
+          // Esperar a que el DOM se actualice
+          setTimeout(() => {
+            window.scrollTo({
+              top: scrollPositionRef.current,
+              behavior: 'instant' as ScrollBehavior
+            });
+            scrollPositionRef.current = 0;
+            setIsTransitioning(false);
+          }, 50);
+        } else {
+          // Para otras navegaciones, scroll al inicio
+          window.scrollTo(0, 0);
+          setTimeout(() => setIsTransitioning(false), 50);
+        }
+      }, 300); // Duración de la animación de salida
     } catch (e) {
       console.error("Navigation error:", e);
+      setIsTransitioning(false);
     }
   };
 
@@ -955,7 +991,7 @@ export default function App() {
   return (
     <div className="bg-background min-h-screen text-primary font-sans transition-colors duration-500">
       <div className="bg-grain" />
-      <Portfolio theme={theme} toggleTheme={toggleTheme} activeSection={activeSection} onNavigate={navigate} />
+      <Portfolio theme={theme} toggleTheme={toggleTheme} activeSection={activeSection} onNavigate={navigate} isTransitioning={isTransitioning} />
     </div>
   );
 }
