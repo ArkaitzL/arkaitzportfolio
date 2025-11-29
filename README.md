@@ -135,3 +135,28 @@ El portfolio incluye un sistema de routing básico:
 ## 📄 Licencia
 
 © 2025 Arkaitz L. Ningún derecho reservado.
+
+## 🎯 SEO y Favicon
+
+### Favicon
+El proyecto incluye un favicon SVG moderno con la letra "A" y gradiente cyan-purple.
+
+**Ubicación**: `/public/favicon.svg`
+
+Para generar los favicons PNG necesarios:
+1. Usa https://realfavicongenerator.net/
+2. Sube el `favicon.svg`
+3. Descarga y coloca los archivos en `/public/`
+
+Ver `SEO_GUIDE.md` para instrucciones detalladas.
+
+### SEO
+El sitio está completamente optimizado para SEO:
+- ✅ Meta tags completos
+- ✅ Open Graph para redes sociales
+- ✅ Twitter Cards
+- ✅ Sitemap.xml
+- ✅ Robots.txt
+- ✅ PWA Manifest
+
+**Importante**: Actualiza las URLs en `index.html`, `sitemap.xml` y `robots.txt` con tu dominio real antes de publicar.
