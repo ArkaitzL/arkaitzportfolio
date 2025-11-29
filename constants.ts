@@ -17,7 +17,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
     "malt": "https://www.malt.es/profile/arkaitzl",
     "itchio": "https://baboongamesoficial.itch.io/",
     "masinfo": "https://info.arkaitz.me",
-    "booking": "https://cal.com/arkaitzl"
+    "booking": "https://calendar.app.google/3Er5jaro33AvpHxh9 "
   },
   "skills": [
     {
@@ -50,7 +50,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       ]
     }
   ],
- "projects": [
+  "projects": [
     {
       "id": 1,
       "title": "HEARINIT",

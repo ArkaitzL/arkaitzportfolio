@@ -15,46 +15,74 @@
     "malt": "https://www.malt.es/profile/arkaitzl",
     "itchio": "https://baboongamesoficial.itch.io/",
     "masinfo": "https://info.arkaitz.me",
-    "booking": "https://cal.com/arkaitzl"
+    "booking": "https://calendar.app.google/3Er5jaro33AvpHxh9 "
   },
   "skills": [
     {
       "category": "Frontend",
       "technologies": [
-        "HTML", "CSS", "JavaScript", "JAMstack", "Astro",
-        "Vite", "Tailwind", "Vue", "React", "AngularJS", "Bootstrap"
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "JAMstack",
+        "Astro",
+        "Vite",
+        "Tailwind",
+        "Vue",
+        "React",
+        "AngularJS",
+        "Bootstrap"
       ]
     },
     {
       "category": "Backend",
       "technologies": [
-        "PHP", "Java", "C#", "Kotlin",
-        "Node.js", "Laravel", ".Net",
-        "SQL", "FireBase",
+        "PHP",
+        "Java",
+        "C#",
+        "Kotlin",
+        "Node.js",
+        "Laravel",
+        ".Net",
+        "SQL",
+        "FireBase",
         "Postman"
       ]
     },
     {
       "category": "Game Development",
       "technologies": [
-        "Unity", "Godot", "Blender"
+        "Unity",
+        "Godot",
+        "Blender"
       ]
     },
     {
       "category": "Tools & Others",
       "technologies": [
-        "Git", "GitHub", "Fork", "Sonar", "JUnit", "Docker",
+        "Git",
+        "GitHub",
+        "Fork",
+        "Sonar",
+        "JUnit",
+        "Docker",
         "Seo tecnico"
       ]
     }
   ],
- "projects": [
+  "projects": [
     {
       "id": 1,
       "title": "HEARINIT",
       "description": "Plataforma que conecta audiólogos con pacientes. Diseño completo, optimización SEO y CMS integrado.",
       "image": "/proyectos/hearinit.png",
-      "technologies": ["Astro", "TailwindCSS", "TypeScript", "CMS", "SEO"],
+      "technologies": [
+        "Astro",
+        "TailwindCSS",
+        "TypeScript",
+        "CMS",
+        "SEO"
+      ],
       "category": "web",
       "featured": true,
       "demoUrl": "https://hearinit.com",
@@ -71,7 +99,10 @@
       "title": "PixelNow",
       "description": "Herramienta web para crear pixel art de manera simple y rápida sin complicaciones.",
       "image": "/proyectos/pixelnow.png",
-      "technologies": ["React", "TypeScript"],
+      "technologies": [
+        "React",
+        "TypeScript"
+      ],
       "category": "web",
       "featured": false,
       "demoUrl": "https://pixelnow.arkaitz.me",
@@ -87,7 +118,10 @@
       "title": "BaboonLite",
       "description": "Librería para Unity que acelera el desarrollo de juegos y prototipos.",
       "image": "/proyectos/baboon-lite.png",
-      "technologies": ["Unity", "C#"],
+      "technologies": [
+        "Unity",
+        "C#"
+      ],
       "category": "game",
       "featured": false,
       "demoUrl": "https://satisfying-cadet-e91.notion.site/BaboOnLite-c6252ac92bbc4f8ea231b1276008c13a",
@@ -103,7 +137,11 @@
       "title": "Paint Together",
       "description": "Lienzo colaborativo en tiempo real con autenticación de usuarios.",
       "image": "/proyectos/paint-together.png",
-      "technologies": ["React", "TypeScript", "Supabase"],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Supabase"
+      ],
       "category": "web",
       "featured": false,
       "demoUrl": "https://paint-together.arkaitz.me/",
@@ -118,7 +156,11 @@
       "title": "WorkFlow",
       "description": "Tracker de productividad minimalista para gestión de tiempo por tareas.",
       "image": "/proyectos/workflow.png",
-      "technologies": ["React", "TypeScript", "TailwindCSS"],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "TailwindCSS"
+      ],
       "category": "web",
       "featured": false,
       "demoUrl": "https://workflow.arkaitz.me",
@@ -134,7 +176,11 @@
       "title": "TuNuevaWeb",
       "description": "Servicio de creación de landing pages rápidas y optimizadas para negocios.",
       "image": "/proyectos/tnw.png",
-      "technologies": ["Astro", "TailwindCSS", "SEO"],
+      "technologies": [
+        "Astro",
+        "TailwindCSS",
+        "SEO"
+      ],
       "category": "web",
       "featured": false,
       "demoUrl": "https://tunuevaweb.es",
@@ -150,7 +196,11 @@
       "title": "Temple of Clouds",
       "description": "Plataformas 3D con mecánicas de vuelo y exploración en entornos aéreos.",
       "image": "/proyectos/temple-of-clouds.jpg",
-      "technologies": ["Unity", "C#", "3D Modeling"],
+      "technologies": [
+        "Unity",
+        "C#",
+        "3D Modeling"
+      ],
       "category": "game",
       "featured": false,
       "demoUrl": "https://baboon-games-studios.itch.io/temple-of-clouds",
@@ -165,7 +215,11 @@
       "title": "SecurePass Generator",
       "description": "Generador de contraseñas robustas con opciones de seguridad avanzadas.",
       "image": "/proyectos/generador.png",
-      "technologies": ["React", "TypeScript", "TailwindCSS"],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "TailwindCSS"
+      ],
       "category": "web",
       "featured": false,
       "demoUrl": "https://securepass.arkaitz.me",
