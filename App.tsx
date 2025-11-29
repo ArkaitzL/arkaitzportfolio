@@ -1,5 +1,4 @@
 
-
 import React, { useState, useEffect } from 'react';
 import { PORTFOLIO_DATA } from './constants';
 import { Icons } from './components/Icons';
@@ -69,7 +68,7 @@ const StickyProjectCard: React.FC<StickyProjectCardProps> = ({ project, index, o
       <RevealOnScroll>
         <div
           onClick={handleNavigate}
-          className={`group relative w-full max-w-6xl mx-auto bg-subtle rounded-[2.5rem] border border-white/5 overflow-hidden shadow-2xl transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] origin-center cursor-pointer hover:border-primary/30 hover:bg-surface hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 hover:scale-[1.01]`}
+          className={`group relative w-full max-w-6xl mx-auto bg-subtle rounded-2xl md:rounded-[2.5rem] border border-white/5 overflow-hidden shadow-2xl transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] origin-center cursor-pointer hover:border-primary/30 hover:bg-surface hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 hover:scale-[1.01]`}
         >
           {/* Ambient Noise Texture */}
           <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none" />
@@ -83,38 +82,38 @@ const StickyProjectCard: React.FC<StickyProjectCardProps> = ({ project, index, o
           {/* Bottom Glow Line */}
           <div className={`absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700`} />
 
-          <div className="p-8 md:p-16 relative z-10 grid md:grid-cols-12 gap-8 md:gap-12 items-start">
+          <div className="p-5 sm:p-6 md:p-12 lg:p-16 relative z-10 grid md:grid-cols-12 gap-4 sm:gap-6 md:gap-8 lg:gap-12 items-start">
 
             {/* Left Column: Index & Meta */}
-            <div className="md:col-span-3 flex flex-col justify-between h-full min-h-[100px] md:min-h-[200px]">
-              <div className="space-y-4">
-                <span className={`inline-block px-3 py-1 rounded-full border border-border bg-surface/50 text-xs font-mono uppercase tracking-widest text-secondary backdrop-blur-md transition-colors duration-500 group-hover:border-primary/20 group-hover:text-primary group-hover:bg-primary/5`}>
+            <div className="md:col-span-3 flex flex-row md:flex-col justify-between md:justify-start items-center md:items-start h-full md:min-h-[200px] gap-4">
+              <div className="space-y-2 md:space-y-4">
+                <span className={`inline-block px-2.5 py-1 rounded-full border border-border bg-surface/50 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-secondary backdrop-blur-md transition-colors duration-500 group-hover:border-primary/20 group-hover:text-primary group-hover:bg-primary/5`}>
                   {project.category}
                 </span>
-                <div className={`w-12 h-[1px] bg-border transition-colors duration-500 group-hover:bg-primary/50`} />
+                <div className={`hidden md:block w-12 h-[1px] bg-border transition-colors duration-500 group-hover:bg-primary/50`} />
               </div>
-              <span className={`font-display text-8xl md:text-9xl font-bold text-border/40 transition-colors duration-500 select-none leading-none mt-auto group-hover:text-primary/10`}>
+              <span className={`font-display text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold text-border/40 transition-colors duration-500 select-none leading-none md:mt-auto group-hover:text-primary/10`}>
                 0{index + 1}
               </span>
             </div>
 
             {/* Right Column: Content */}
-            <div className="md:col-span-9 flex flex-col gap-8">
-              <div className="min-h-[280px] md:min-h-[240px] flex flex-col">
-                <h3 className="text-5xl md:text-7xl font-display font-bold text-primary leading-[0.9] tracking-tight mb-6 transition-colors duration-500">
+            <div className="md:col-span-9 flex flex-col gap-4 sm:gap-6 md:gap-8">
+              <div className="min-h-[200px] sm:min-h-[220px] md:min-h-[240px] flex flex-col">
+                <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-display font-bold text-primary leading-[0.9] tracking-tight mb-3 sm:mb-4 md:mb-6 transition-colors duration-500">
                   {project.title}
                 </h3>
-                <p className="text-xl md:text-2xl text-secondary font-light leading-relaxed max-w-3xl transition-colors duration-500 group-hover:text-primary/80 line-clamp-3">
+                <p className="text-sm sm:text-base md:text-xl lg:text-2xl text-secondary font-light leading-relaxed max-w-3xl transition-colors duration-500 group-hover:text-primary/80 line-clamp-3">
                   {project.description}
                 </p>
               </div>
 
               <div className="w-full h-[1px] bg-border/50 group-hover:bg-border/80 transition-colors" />
 
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                <div className="flex flex-wrap gap-2">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-5 md:gap-6">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {project.technologies.slice(0, 4).map(tech => (
-                    <span key={tech} className={`px-4 py-2 text-sm font-medium text-secondary bg-surface/50 border border-border/50 rounded-lg transition-colors duration-500 group-hover:bg-background group-hover:text-primary group-hover:border-primary/20`}>
+                    <span key={tech} className={`px-2.5 sm:px-3 md:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-secondary bg-surface/50 border border-border/50 rounded-lg transition-colors duration-500 group-hover:bg-background group-hover:text-primary group-hover:border-primary/20`}>
                       {tech}
                     </span>
                   ))}
@@ -122,11 +121,11 @@ const StickyProjectCard: React.FC<StickyProjectCardProps> = ({ project, index, o
 
                 <button
                   type="button"
-                  className="group/btn flex items-center gap-4 text-primary font-medium pl-6 py-2 relative"
+                  className="group/btn flex items-center gap-2 sm:gap-3 md:gap-4 text-primary font-medium pl-0 md:pl-6 py-2 relative"
                 >
-                  <span className="text-lg tracking-wide uppercase group-hover/btn:tracking-widest transition-all duration-300">Ver Proyecto</span>
-                  <span className={`w-12 h-12 rounded-full border border-border flex items-center justify-center bg-background transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] shadow-lg group-hover/btn:border-transparent group-hover/btn:bg-primary group-hover/btn:text-background group-hover/btn:scale-110 group-hover/btn:shadow-primary/20`}>
-                    <Icons.ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover/btn:rotate-45" />
+                  <span className="text-sm sm:text-base md:text-lg tracking-wide uppercase group-hover/btn:tracking-widest transition-all duration-300">Ver Proyecto</span>
+                  <span className={`w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full border border-border flex items-center justify-center bg-background transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] shadow-lg group-hover/btn:border-transparent group-hover/btn:bg-primary group-hover/btn:text-background group-hover/btn:scale-110 group-hover/btn:shadow-xl`}>
+                    <Icons.ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
                   </span>
                 </button>
               </div>
@@ -183,27 +182,27 @@ const Marquee: React.FC<MarqueeProps> = ({ items, reverse = false }) => {
 
 const Hero: React.FC<{ onNavigate: (path: string) => void }> = ({ onNavigate }) => {
   return (
-    <section id="home" className="min-h-screen flex flex-col justify-center px-6 relative pt-20">
+    <section id="home" className="min-h-screen flex flex-col justify-center px-4 sm:px-6 relative pt-16 sm:pt-20">
       <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="space-y-2 mb-8 animate-fade-in">
-          <h2 className="text-xl md:text-2xl text-secondary font-light tracking-wide flex items-center gap-3">
-            <span className="w-10 h-[1px] bg-secondary"></span>
+        <div className="space-y-1 sm:space-y-2 mb-6 sm:mb-8 animate-fade-in">
+          <h2 className="text-sm sm:text-lg md:text-2xl text-secondary font-light tracking-wide flex items-center gap-2 sm:gap-3">
+            <span className="w-6 sm:w-10 h-[1px] bg-secondary"></span>
             {PORTFOLIO_DATA.personal.name}
           </h2>
-          <h1 className="text-6xl md:text-9xl font-display font-bold tracking-tighter text-primary">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-display font-bold tracking-tighter text-primary leading-[0.9]">
             DESARROLLADOR<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary animate-pulse-glow">FULL STACK</span>
           </h1>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-12 animate-fade-in" style={{ animationDelay: '200ms' }}>
+        <div className="grid md:grid-cols-3 gap-6 sm:gap-8 md:gap-12 animate-fade-in" style={{ animationDelay: '200ms' }}>
           <div className="md:col-span-2">
-            <p className="text-2xl text-secondary leading-relaxed font-light">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-secondary leading-relaxed font-light">
               Creando experiencias digitales enfocadas en movimiento, estética y rendimiento.
             </p>
           </div>
-          <div className="flex flex-col justify-end items-start gap-4">
-            <p className="text-sm text-secondary uppercase tracking-widest flex items-center gap-2">
+          <div className="flex flex-col justify-end items-start gap-3 sm:gap-4">
+            <p className="text-xs sm:text-sm text-secondary uppercase tracking-widest flex items-center gap-2">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -218,10 +217,10 @@ const Hero: React.FC<{ onNavigate: (path: string) => void }> = ({ onNavigate }) 
       </div>
 
       {/* Animated Hero Blob */}
-      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[40vw] h-[40vw] bg-accent opacity-[0.03] rounded-full blur-3xl pointer-events-none animate-float" />
+      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[50vw] sm:w-[40vw] h-[50vw] sm:h-[40vw] bg-accent opacity-[0.03] rounded-full blur-3xl pointer-events-none animate-float" />
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce opacity-50">
+      <div className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce opacity-50">
         <span className="text-[10px] uppercase tracking-widest text-secondary">Scroll</span>
         <Icons.ChevronDown className="w-4 h-4 text-secondary" />
       </div>
@@ -267,14 +266,53 @@ const Manifesto: React.FC = () => {
   ];
 
   return (
-    <section id="manifesto" className="py-32 container mx-auto px-6">
+    <section id="manifesto" className="py-16 sm:py-24 md:py-32 container mx-auto px-4 sm:px-6">
       <RevealOnScroll>
-        <h2 className="text-4xl md:text-6xl font-display font-bold text-primary mb-16 text-center">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-primary mb-8 sm:mb-12 md:mb-16 text-center">
           Áreas de Desarrollo
         </h2>
       </RevealOnScroll>
 
-      <div className="flex flex-col md:flex-row h-[600px] gap-2 md:gap-4">
+      {/* Mobile/Tablet: Stacked Cards */}
+      <div className="flex flex-col md:hidden gap-4">
+        {pillars.map((pillar, index) => (
+          <div
+            key={index}
+            onClick={() => setActiveItem(activeItem === index ? -1 : index)}
+            className={`relative rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer bg-surface border border-border ${activeItem === index ? 'min-h-[280px]' : 'min-h-[120px]'}`}
+          >
+            {/* Background Energy */}
+            <div className={`absolute inset-0 bg-gradient-to-br ${pillar.gradient} opacity-0 transition-opacity duration-500 ${activeItem === index ? 'opacity-100' : ''}`} />
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay" />
+
+            {/* Content Container */}
+            <div className="relative p-6 flex flex-col justify-between h-full">
+              {/* Number */}
+              <span className="absolute top-4 right-4 text-4xl font-display font-bold text-primary/5 select-none">
+                0{index + 1}
+              </span>
+
+              <div>
+                <h3 className="text-2xl font-bold text-primary mb-2">
+                  {pillar.title}
+                </h3>
+
+                <p className={`text-sm sm:text-base text-secondary leading-relaxed transition-all duration-500 ${activeItem === index ? 'opacity-100 max-h-96 mt-3' : 'opacity-0 max-h-0 overflow-hidden'}`}>
+                  {pillar.desc}
+                </p>
+              </div>
+
+              {/* Expand indicator */}
+              <div className="flex justify-end mt-4">
+                <Icons.ChevronDown className={`w-5 h-5 text-secondary transition-transform duration-500 ${activeItem === index ? 'rotate-180' : ''}`} />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop: Horizontal Expandable Cards */}
+      <div className="hidden md:flex flex-row h-[600px] gap-4">
         {pillars.map((pillar, index) => (
           <div
             key={index}
@@ -294,8 +332,8 @@ const Manifesto: React.FC = () => {
               </span>
 
               <div className={`transition-all duration-500 ${activeItem === index ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-70'}`}>
-                {/* Title with rotation for inactive state on mobile/desktop handling */}
-                <h3 className={`text-2xl md:text-4xl font-bold text-primary mb-4 transition-all duration-500 ${activeItem !== index && 'md:-rotate-90 md:origin-bottom-left md:absolute md:bottom-12 md:left-12 md:w-[400px] whitespace-nowrap'}`}>
+                {/* Title with rotation for inactive state */}
+                <h3 className={`text-2xl md:text-4xl font-bold text-primary mb-4 transition-all duration-500 ${activeItem !== index && '-rotate-90 origin-bottom-left absolute bottom-12 left-12 w-[400px] whitespace-nowrap'}`}>
                   {pillar.title}
                 </h3>
 
@@ -318,12 +356,12 @@ const Work: React.FC<{ onNavigate: (path: string) => void }> = ({ onNavigate }) 
   const maxStackIndex = Math.min(totalProjects, 5);
 
   return (
-    <section id="work" className="pt-20 pb-[10vh] relative">
-      <div className="container mx-auto px-6 mb-24">
+    <section id="work" className="pt-12 sm:pt-16 md:pt-20 pb-[10vh] relative">
+      <div className="container mx-auto px-4 sm:px-6 mb-12 sm:mb-16 md:mb-24">
         <RevealOnScroll>
-          <div className="flex items-end justify-between border-b border-border pb-8">
-            <h2 className="text-5xl md:text-7xl font-display font-bold text-primary">Proyectos</h2>
-            <span className="hidden md:block text-secondary font-mono text-lg">
+          <div className="flex items-end justify-between border-b border-border pb-4 sm:pb-6 md:pb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-display font-bold text-primary">Proyectos</h2>
+            <span className="text-secondary font-mono text-sm sm:text-base md:text-lg">
               ({totalProjects})
             </span>
           </div>
@@ -339,7 +377,8 @@ const Work: React.FC<{ onNavigate: (path: string) => void }> = ({ onNavigate }) 
           // All cards stack with a slight wait (10vh) for the previous one.
           // This creates a neat "Deck of Cards" effect.
           // Last card keeps the buffer positive to ensure it anchors correctly.
-          const margin = '10vh';
+          // Mobile: 5vh, Desktop: 10vh
+          const margin = window.innerWidth < 768 ? '5vh' : '10vh';
 
           // SYNCHRONIZATION LOGIC:
           const maxTop = 120 + 40; // Cap at 4 items deep for offset (index 4)
@@ -370,27 +409,38 @@ const Work: React.FC<{ onNavigate: (path: string) => void }> = ({ onNavigate }) 
 
 const Experience: React.FC = () => {
   return (
-    <section id="experience" className="pt-20 pb-32 container mx-auto px-6 max-w-5xl relative">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-accent opacity-[0.02] rounded-full blur-3xl -z-10" />
+    <section id="experience" className="pt-12 sm:pt-16 md:pt-20 pb-16 sm:pb-24 md:pb-32 container mx-auto px-4 sm:px-6 max-w-5xl relative">
+      <div className="absolute top-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-accent opacity-[0.02] rounded-full blur-3xl -z-10" />
 
-      <div className="mb-20">
+      <div className="mb-12 sm:mb-16 md:mb-20">
         <RevealOnScroll>
-          <h2 className="text-5xl md:text-7xl font-display font-bold text-primary mb-6">Experiencia</h2>
-          <p className="text-secondary text-xl font-light max-w-2xl">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-display font-bold text-primary mb-4 sm:mb-6">Experiencia</h2>
+          <p className="text-secondary text-sm sm:text-base md:text-lg lg:text-xl font-light max-w-2xl">
             Una línea de tiempo de mi trayectoria profesional, construyendo el futuro de la web y medios interactivos.
           </p>
         </RevealOnScroll>
       </div>
 
-      <div className="relative pl-8 md:pl-0">
-        <div className="absolute left-0 md:left-[140px] top-4 bottom-0 w-[1px] bg-gradient-to-b from-primary/50 via-border to-transparent hidden md:block" />
+      <div className="relative pl-0 md:pl-0">
+        {/* Mobile timeline line */}
+        <div className="absolute left-4 top-4 bottom-0 w-[1px] bg-gradient-to-b from-primary/50 via-border to-transparent md:hidden" />
+        {/* Desktop timeline line */}
+        <div className="absolute left-[140px] top-4 bottom-0 w-[1px] bg-gradient-to-b from-primary/50 via-border to-transparent hidden md:block" />
 
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col gap-8 sm:gap-10 md:gap-12">
           {PORTFOLIO_DATA.experience.map((job, idx) => (
             <RevealOnScroll key={idx} delay={idx * 100}>
               <div
-                className="group relative grid md:grid-cols-[140px_1fr] gap-8 items-start"
+                className="group relative grid md:grid-cols-[140px_1fr] gap-4 sm:gap-6 md:gap-8 items-start"
               >
+                {/* Timeline Dot (Mobile) */}
+                <div className="md:hidden absolute left-[11px] top-3">
+                  <div className={`w-3 h-3 rounded-full shadow-[0_0_0_4px_var(--bg-background)] z-10 transition-all duration-500 ease-out ${job.period.includes('Presente')
+                    ? 'bg-accent shadow-[0_0_10px_var(--accent-color)] scale-110'
+                    : 'bg-border'
+                    }`} />
+                </div>
+
                 {/* Timeline Dot (Desktop) */}
                 <div className="hidden md:flex justify-end pr-8 pt-2 relative">
                   <span className="font-mono text-sm text-secondary group-hover:text-primary transition-colors duration-300">
@@ -403,27 +453,27 @@ const Experience: React.FC = () => {
                 </div>
 
                 {/* Card */}
-                <div className="relative p-8 rounded-[2rem] bg-surface/50 backdrop-blur-sm border border-border transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/10">
+                <div className="relative p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl md:rounded-[2rem] bg-surface/50 backdrop-blur-sm border border-border transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/10 ml-10 md:ml-0">
 
                   {/* Hover Glow Border Effect */}
-                  <div className="absolute inset-0 rounded-[2rem] border-2 border-transparent group-hover:border-accent/10 transition-colors duration-500 pointer-events-none" />
+                  <div className="absolute inset-0 rounded-xl sm:rounded-2xl md:rounded-[2rem] border-2 border-transparent group-hover:border-accent/10 transition-colors duration-500 pointer-events-none" />
 
                   {/* Hover Glow Background */}
-                  <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/[0.02] rounded-[2rem] transition-colors duration-500 pointer-events-none" />
+                  <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/[0.02] rounded-xl sm:rounded-2xl md:rounded-[2rem] transition-colors duration-500 pointer-events-none" />
 
-                  <div className="flex flex-col md:flex-row md:items-start justify-between mb-6 gap-2 relative z-10">
+                  <div className="flex flex-col md:flex-row md:items-start justify-between mb-4 sm:mb-5 md:mb-6 gap-2 relative z-10">
                     <div>
-                      <h3 className="text-3xl font-display font-bold text-primary group-hover:text-accent transition-colors duration-300">
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-primary group-hover:text-accent transition-colors duration-300">
                         {job.company}
                       </h3>
-                      <span className="inline-block mt-2 text-sm font-medium text-accent uppercase tracking-wider">
+                      <span className="inline-block mt-1 sm:mt-2 text-xs sm:text-sm font-medium text-accent uppercase tracking-wider">
                         {job.position}
                       </span>
                     </div>
-                    <span className="md:hidden text-xs font-mono text-secondary mb-2 block">{job.period}</span>
+                    <span className="text-xs font-mono text-secondary block md:hidden">{job.period}</span>
                   </div>
 
-                  <p className="text-secondary font-light leading-relaxed mb-6 text-lg">
+                  <p className="text-secondary font-light leading-relaxed mb-4 sm:mb-5 md:mb-6 text-sm sm:text-base md:text-lg">
                     {job.description}
                   </p>
 
@@ -440,28 +490,28 @@ const Experience: React.FC = () => {
 
 const FreelanceCTA: React.FC = () => {
   return (
-    <section className="py-20 container mx-auto px-6 max-w-6xl mb-24">
+    <section className="py-12 sm:py-16 md:py-20 container mx-auto px-4 sm:px-6 max-w-6xl mb-12 sm:mb-16 md:mb-24">
       <RevealOnScroll>
-        <div className="relative rounded-[2.5rem] overflow-hidden bg-primary text-background p-12 md:p-24 text-center group transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] hover:scale-[1.01] hover:shadow-2xl hover:shadow-primary/20">
+        <div className="relative rounded-2xl md:rounded-[2.5rem] overflow-hidden bg-primary text-background p-6 sm:p-8 md:p-16 lg:p-24 text-center group transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] hover:scale-[1.01] hover:shadow-2xl hover:shadow-primary/20">
           {/* Shimmer Effect */}
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer pointer-events-none" />
           <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150" />
 
-          <div className="relative z-10 flex flex-col items-center gap-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background/10 backdrop-blur-md border border-background/20 text-background">
-              <Icons.Briefcase className="w-4 h-4" />
-              <span className="text-xs font-bold tracking-widest uppercase">Aceptando Nuevos Clientes</span>
+          <div className="relative z-10 flex flex-col items-center gap-4 sm:gap-6 md:gap-8">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-background/10 backdrop-blur-md border border-background/20 text-background">
+              <Icons.Briefcase className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="text-[10px] sm:text-xs font-bold tracking-widest uppercase">Aceptando Nuevos Clientes</span>
             </div>
 
-            <h2 className="text-4xl md:text-6xl font-display font-bold leading-tight max-w-4xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-display font-bold leading-tight max-w-4xl mx-auto">
               ¿Necesitas una web de alto impacto para tu negocio?
             </h2>
 
-            <p className="text-lg md:text-xl font-light opacity-90 max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl font-light opacity-90 max-w-2xl mx-auto">
               Trabajo en <strong>TuNuevoSoftware</strong> (TNS), un estudio dedicado a crear aplicaciones web rápidas y optimizadas para SEO.
             </p>
 
-            <div className="pt-8">
+            <div className="pt-4 sm:pt-6 md:pt-8">
               <MagneticButton
                 href="https://tunuevosoftware.com/"
                 className="bg-background text-primary hover:bg-background/90 border border-transparent hover:border-white/20"
@@ -536,14 +586,14 @@ const Dock: React.FC<{ theme: string; toggleTheme: () => void; activeSection: st
   }, [activeId, window.location.pathname]);
 
   return (
-    <div className="fixed bottom-8 left-1/2 -translate-x-1/2 ml-16 z-50 animate-fade-in max-w-[95vw]">
+    <div className="fixed bottom-4 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 ml-0 sm:ml-8 md:ml-16 z-50 animate-fade-in max-w-[95vw]">
       <div
         ref={containerRef}
-        className="relative flex items-center gap-1 sm:gap-2 p-2 bg-surface/70 dark:bg-[#0a0a0a]/70 backdrop-blur-2xl border border-white/20 dark:border-white/10 rounded-full shadow-2xl shadow-black/20 ring-1 ring-white/20 dark:ring-white/5"
+        className="relative flex items-center gap-0.5 sm:gap-1 md:gap-2 p-1.5 sm:p-2 bg-surface/70 dark:bg-[#0a0a0a]/70 backdrop-blur-2xl border border-white/20 dark:border-white/10 rounded-full shadow-2xl shadow-black/20 ring-1 ring-white/20 dark:ring-white/5"
       >
         {/* Sliding Active Indicator */}
         <div
-          className="absolute top-2 bottom-2 bg-primary rounded-full transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] shadow-md"
+          className="absolute top-1.5 sm:top-2 bottom-1.5 sm:bottom-2 bg-primary rounded-full transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] shadow-md"
           style={{
             left: indicatorStyle.left,
             width: indicatorStyle.width,
@@ -558,7 +608,7 @@ const Dock: React.FC<{ theme: string; toggleTheme: () => void; activeSection: st
               key={item.id}
               ref={el => itemsRef.current[index] = el}
               onClick={() => scrollTo(item.id)}
-              className={`relative z-10 px-4 sm:px-6 py-3 rounded-full text-xs sm:text-sm font-medium transition-colors duration-300 ${isActive
+              className={`relative z-10 px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full text-[10px] sm:text-xs md:text-sm font-medium transition-colors duration-300 ${isActive
                 ? 'text-background font-bold'
                 : 'text-secondary hover:text-primary'
                 }`}
@@ -568,22 +618,22 @@ const Dock: React.FC<{ theme: string; toggleTheme: () => void; activeSection: st
           );
         })}
 
-        <div className="w-[1px] h-6 bg-border/50 mx-1 sm:mx-2 relative z-10" />
+        <div className="w-[1px] h-4 sm:h-5 md:h-6 bg-border/50 mx-0.5 sm:mx-1 md:mx-2 relative z-10" />
 
         <button
           onClick={toggleTheme}
-          className="relative z-10 p-3 rounded-full text-secondary hover:text-primary hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-300 hover:-translate-y-0.5 active:scale-95 active:rotate-12"
+          className="relative z-10 p-2 sm:p-2.5 md:p-3 rounded-full text-secondary hover:text-primary hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-300 hover:-translate-y-0.5 active:scale-95 active:rotate-12"
           title={theme === 'dark' ? 'Cambiar a Modo Claro' : 'Cambiar a Modo Oscuro'}
         >
-          {theme === 'dark' ? <Icons.Sun className="w-4 h-4" /> : <Icons.Moon className="w-4 h-4" />}
+          {theme === 'dark' ? <Icons.Sun className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> : <Icons.Moon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
         </button>
 
         <button
           onClick={() => onNavigate('/reservas')}
-          className="relative z-10 p-3 rounded-full bg-primary text-background hover:scale-110 active:scale-95 transition-all duration-300 ml-1 hover:shadow-[0_0_15px_-3px_var(--accent-color)]"
+          className="relative z-10 p-2 sm:p-2.5 md:p-3 rounded-full bg-primary text-background hover:scale-110 active:scale-95 transition-all duration-300 ml-0.5 sm:ml-1 hover:shadow-[0_0_15px_-3px_var(--accent-color)]"
           title="Contáctame"
         >
-          <Icons.Mail className="w-4 h-4" />
+          <Icons.Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
         </button>
       </div>
     </div>
