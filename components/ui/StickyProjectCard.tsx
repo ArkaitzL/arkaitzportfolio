@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Project } from '../../types';
 import RevealOnScroll from '../ui/RevealOnScroll';
 import { Icons } from './Icons';
@@ -12,7 +12,21 @@ interface StickyProjectCardProps {
 }
 
 export const StickyProjectCard: React.FC<StickyProjectCardProps> = ({ project, index, onNavigate, customMargin, pushUpHeight }) => {
-    const topOffset = 120 + (index * 10);
+    // Detectar móvil de forma reactiva
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // Ajustar offset para móvil y desktop
+    const topOffset = isMobile ? 80 + (index * 8) : 120 + (index * 10);
 
     const handleNavigate = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -32,7 +46,7 @@ export const StickyProjectCard: React.FC<StickyProjectCardProps> = ({ project, i
             <RevealOnScroll>
                 <div
                     onClick={handleNavigate}
-                    className={`group relative w-full max-w-6xl mx-auto bg-subtle rounded-2xl md:rounded-[2.5rem] border border-white/5 overflow-hidden shadow-2xl transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] origin-center cursor-pointer hover:border-primary/30 hover:bg-surface hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 hover:scale-[1.01]`}
+                    className={`group relative w-full max-w-6xl mx-auto bg-subtle rounded-2xl md:rounded-[2.5rem] border border-white/5 overflow-hidden shadow-2xl transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] origin-center cursor-pointer hover:border-primary/30 hover:bg-surface hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 hover:scale-[1.01] min-h-[480px] md:min-h-0`}
                 >
                     {/* Ambient Noise Texture */}
                     <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none" />
