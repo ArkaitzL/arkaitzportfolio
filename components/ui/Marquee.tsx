@@ -12,7 +12,7 @@ export const Marquee: React.FC<MarqueeProps> = ({ items, reverse = false }) => {
             <div className="absolute inset-y-0 left-0 w-20 md:w-40 bg-gradient-to-r from-white dark:from-black via-white/80 dark:via-black/80 to-transparent z-20 pointer-events-none" />
             <div className="absolute inset-y-0 right-0 w-20 md:w-40 bg-gradient-to-l from-white dark:from-black via-white/80 dark:via-black/80 to-transparent z-20 pointer-events-none" />
 
-            <div className={`flex whitespace-nowrap gap-8 md:gap-12 animate-${reverse ? 'scroll-reverse' : 'scroll'} group-hover:[animation-play-state:paused] items-center`}>
+            <div className={`flex whitespace-nowrap gap-8 md:gap-12 ${reverse ? 'animate-scroll-reverse' : 'animate-scroll'} group-hover:[animation-play-state:paused] items-center`}>
                 {/* Quadruple items to ensure smooth infinite scroll on wide screens */}
                 {[...items, ...items, ...items, ...items].map((item, idx) => (
                     <div key={`${item}-${idx}`} className="flex items-center group/item cursor-default">

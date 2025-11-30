@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    /* Light Mode Defaults */
+    --bg-background: #fdfdfd;
+    --bg-surface: #ffffff;
+    --bg-subtle: #f3f4f6;
+    --border-color: #e5e7eb;
+    --text-primary: #171717;
+    --text-secondary: #525252;
+    --accent-color: #000000;
+    --grain-opacity: 0.03;
+}
+
+.dark {
+    /* Dark Mode Defaults */
+    --bg-background: #030303;
+    --bg-surface: #0A0A0A;
+    --bg-subtle: #171717;
+    --border-color: #262626;
+    --text-primary: #e5e5e5;
+    --text-secondary: #a3a3a3;
+    --accent-color: #ffffff;
+    --grain-opacity: 0.04;
+}
+
+body {
+    background-color: var(--bg-background);
+    color: var(--text-primary);
+    transition: background-color 0.5s ease, color 0.5s ease;
+    overflow-x: hidden;
+}
+
+/* Subtle Grain Texture */
+.bg-grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 50;
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    filter: invert(0);
+}
+
+.dark .bg-grain {
+    filter: invert(0);
+}
+
+/* Invert grain for light mode to make it visible on white */
+:root:not(.dark) .bg-grain {
+    filter: invert(1);
+}
+
+/* Hide Scrollbar for clean look */
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+.text-outline {
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.15);
+    color: transparent;
+}
+
+.dark .text-outline {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Line Clamp Utility */
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
