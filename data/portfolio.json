@@ -233,20 +233,34 @@
   ],
   "experience": [
     {
-      "company": "Hearinit [Freelance]",
-      "position": "Desarrollador web",
-      "period": "11/2024 - Presente",
-      "description": "Desarrollo completo de plataforma web. Arquitectura, frontend, backend ligero y SEO técnico."
-    },
-    {
-      "company": "Moddo [Freelance]",
-      "position": "Desarrollador multiplataforma",
-      "period": "11/2024 - 02/2025",
-      "description": "Optimización de gestión de almacenes. Mejora de UI/UX en aplicación multiplataforma."
+      "company": "Accenture",
+      "position": "Desarrollador de software",
+      "period": "08/2025 - Presente",
+      "description": "Desarrollo de backend con Java"
     },
     {
       "company": "Freelance",
-      "position": "Desarrollador Web Senior",
+      "position": "Desarrollador Full Stack",
+      "period": "11/2024 - 07/2025",
+      "description": "Desarrollo de proyectos web y multiplataforma para diversos clientes.",
+      "children": [
+        {
+          "company": "Hearinit",
+          "position": "Desarrollador web",
+          "period": "11/2024 - 07/2025",
+          "description": "Desarrollo completo de plataforma web. Arquitectura, frontend, backend ligero y SEO técnico."
+        },
+        {
+          "company": "Moddo",
+          "position": "Desarrollador multiplataforma",
+          "period": "11/2024 - 02/2025",
+          "description": "Optimización y mejora de aplicacion multiplataforma de gestión de almacenes."
+        }
+      ]
+    },
+    {
+      "company": "Tu Nueva Web",
+      "position": "Desarrollador Web",
       "period": "08/2024 - 11/2024",
       "description": "Sitios web de alto impacto para PYMES. Integración de herramientas de marketing y analítica."
     },
@@ -254,19 +268,13 @@
       "company": "Ayesa",
       "position": "Desarrollador de Software",
       "period": "02/2024 - 08/2024",
-      "description": "Desarrollo Enterprise con Spring Boot y Angular. Calidad de código y pruebas unitarias."
+      "description": "Desarrollo con Spring Boot y Angular con calidad de código y pruebas unitarias."
     },
     {
       "company": "Ludus Global",
       "position": "Desarrollador VR",
       "period": "02/2023 - 08/2023",
       "description": "Simulaciones de realidad virtual (VR) industriales usando Unity y C#."
-    },
-    {
-      "company": "Proyectos Personales",
-      "position": "Indie Game Dev",
-      "period": "2023 - Presente",
-      "description": "Desarrollo completo de videojuegos (Mobile/PC). Diseño, programación y publicación."
     }
   ]
 }

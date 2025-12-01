@@ -34,19 +34,6 @@ export interface Project {
   demoUrl: string;
   githubUrl: string;
   details: string[];
-}
-
-export interface Experience {
-  company: string;
-  position: string;
-  period: string;
-  description: string;
-}
-
-export interface PortfolioData {
-  personal: PersonalInfo;
-  links: SocialLinks;
-  skills: SkillCategory[];
   projects: Project[];
   experience: Experience[];
 }
